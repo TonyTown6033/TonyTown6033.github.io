@@ -7,7 +7,7 @@ date: 2025-12-19
 # 俄罗斯轮盘赌的问题 
 你和你的同伴被坏人抓住进行一个恶趣味的游戏。 9个人被绑在椅子上等待你的处决，其中4个人你的朋友，5个人是对面的人。 你有9发子弹，3发实弹，6发空包弹，每个人只能被射击一次，如何安排子弹上膛的顺序来救下所有的朋友。 这里先按下不提后面更新，不过我委托gpt sensai写了求解的内容。
 
-[`russian.py`](/assets/plugin/russian.py)
-[`basic.py`](/assets/plugin/basic.py)
+[`russian.py`]({{ "/assets/plugin/russian.py" | relative_url }})
+[`basic.py`]({{ "/assets/plugin/basic.py" | relative_url }})
 TODO:
 	后面我会花时间来学习解释这个程序，加油吧!!

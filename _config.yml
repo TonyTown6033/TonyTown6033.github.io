@@ -1,0 +1,22 @@
+title: "town's blog"
+description: "随手记点东西。"
+url: "https://TonyTown6033.github.io"
+
+theme: minima
+
+# 让 notes 里的 md 也能作为页面被访问
+collections:
+  notes:
+    output: true
+
+# 可选：显示在顶部导航
+header_pages:
+  - index.md
+  - about.md
+
+plugins:
+  - jekyll-feed
+
+# 可选：时区（写日期相关内容更稳）
+timezone: America/Denver
+

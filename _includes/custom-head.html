@@ -1,0 +1,19 @@
+<script>
+  window.MathJax = window.MathJax || {};
+  window.MathJax.tex = window.MathJax.tex || {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  };
+  window.MathJax.options = window.MathJax.options || {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  };
+
+  if (!window.__mathjax_loading__) {
+    window.__mathjax_loading__ = true;
+    var script = document.createElement('script');
+    script.defer = true;
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+    document.head.appendChild(script);
+  }
+</script>

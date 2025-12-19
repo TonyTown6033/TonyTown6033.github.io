@@ -11,3 +11,5 @@ date: 2025-12-19
 [`basic.py`]({{ "/assets/plugin/basic.py" | relative_url }})
 TODO:
 	后面我会花时间来学习解释这个程序，加油吧!!
+
+[basic.py]("../assets/plugin/basic.py")

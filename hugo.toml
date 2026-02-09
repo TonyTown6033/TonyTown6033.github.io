@@ -1,87 +1,71 @@
 baseURL = 'https://tonytown6033.github.io/'
 languageCode = 'zh-cn'
+defaultContentLanguage = 'zh-cn'
+hasCJKLanguage = true
 title = 'TonyTown Blog'
-theme = 'PaperMod'
+theme = 'hugo-theme-stack'
 enableRobotsTXT = true
 
 [pagination]
 pagerSize = 10
 
 [params]
-description = 'TonyTown 的技术与生活札记'
-defaultTheme = 'dark'
 mainSections = ['posts']
-ShowReadingTime = true
-ShowShareButtons = true
-ShowCodeCopyButtons = true
-ShowPostNavLinks = true
-ShowBreadCrumbs = true
-ShowToc = true
-TocOpen = false
-DateFormat = '2006-01-02'
+rssFullContent = true
 
-[params.homeInfoParams]
-Title = 'Code. Life. Repeat.'
-Content = '这里既记录技术实践与复盘，也记录日常生活、思考与成长。'
+[params.footer]
+since = 2026
+customText = 'Code and Life by TonyTown'
 
-[params.hero]
-kicker = 'Graffiti Hacker Journal'
-subtag = 'TECH X LIFE X ENERGY'
-terminal = 'notes --topic code,life --vibe vivid'
+[params.sidebar]
+emoji = '⚡'
+subtitle = '记录技术，也记录生活。'
 
-tags = [
-  'techlog',
-  'life-notes',
-  'build-in-public',
-  'debug-story',
+[params.article]
+headingAnchor = true
+math = false
+toc = true
+readingTime = true
+
+[params.colorScheme]
+toggle = true
+default = 'auto'
+
+[params.comments]
+enabled = false
+
+[params.widgets]
+homepage = [
+  { type = 'categories', params = { limit = 10 } },
+  { type = 'tag-cloud', params = { limit = 12 } },
 ]
+page = [{ type = 'toc' }]
 
-[[params.hero.buttons]]
-name = '阅读文章'
-url = '/posts/'
-style = 'solid'
-
-[[params.hero.buttons]]
-name = '查看 GitHub'
+[[social]]
+identifier = 'github'
+name = 'GitHub'
 url = 'https://github.com/TonyTown6033'
-style = 'ghost'
 
-[[params.hero.metrics]]
-value = '01'
-label = '已发布文章'
-
-[[params.hero.metrics]]
-value = '100%'
-label = '技术与生活并行记录'
-
-[[params.hero.metrics]]
-value = '长期'
-label = '持续更新计划'
-
-[[params.hero.cards]]
-title = '技术实践'
-text = '从想法到可运行代码，关注真正能落地的工程方法。'
-
-[[params.hero.cards]]
-title = '生活片段'
-text = '记录日常中的小事、感受与变化，给长期创作更多真实温度。'
-
-[[params.hero.cards]]
-title = '长期成长'
-text = '把博客当作公开成长日志，持续写技术，也持续写生活。'
-
-[[params.socialIcons]]
-name = 'github'
-url = 'https://github.com/TonyTown6033'
+[social.params]
+icon = 'brand-github'
 
 [[menu.main]]
 identifier = 'home'
 name = '首页'
 url = '/'
-weight = 1
+weight = 10
+
+[menu.main.params]
+icon = 'home'
 
 [[menu.main]]
 identifier = 'posts'
 name = '文章'
 url = '/posts/'
-weight = 2
+weight = 20
+
+[menu.main.params]
+icon = 'categories'
+
+[markup.goldmark.renderer]
+unsafe = true

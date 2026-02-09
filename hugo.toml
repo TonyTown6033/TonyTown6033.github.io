@@ -9,7 +9,7 @@ pagerSize = 10
 
 [params]
 description = 'TonyTown 的技术与生活札记'
-defaultTheme = 'auto'
+defaultTheme = 'dark'
 mainSections = ['posts']
 ShowReadingTime = true
 ShowShareButtons = true
@@ -25,7 +25,16 @@ Title = 'Code. Life. Repeat.'
 Content = '这里既记录技术实践与复盘，也记录日常生活、思考与成长。'
 
 [params.hero]
-kicker = 'Tech + Life Journal'
+kicker = 'Graffiti Hacker Journal'
+subtag = 'TECH X LIFE X ENERGY'
+terminal = 'notes --topic code,life --vibe vivid'
+
+tags = [
+  'techlog',
+  'life-notes',
+  'build-in-public',
+  'debug-story',
+]
 
 [[params.hero.buttons]]
 name = '阅读文章'

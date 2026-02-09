@@ -1,18 +1,28 @@
 {{- $hero := site.Params.hero -}}
 {{- with site.Params.homeInfoParams }}
 <section class="hero-shell">
-  <div class="hero-glow hero-glow-a"></div>
-  <div class="hero-glow hero-glow-b"></div>
+  <div class="spray spray-a"></div>
+  <div class="spray spray-b"></div>
 
   <article class="hero-panel reveal delay-0">
     {{- with $hero.kicker }}
-    <p class="hero-kicker">{{ . }}</p>
+    <p class="hero-kicker">/// {{ . }}</p>
     {{- end }}
 
-    <h1 class="hero-title">{{ .Title | markdownify }}</h1>
+    <h1 class="hero-title" data-text="{{ .Title }}">{{ .Title | markdownify }}</h1>
+
+    {{- with $hero.subtag }}
+    <p class="hero-subtag">{{ . }}</p>
+    {{- end }}
 
     <div class="hero-copy">
       {{ .Content | markdownify }}
+    </div>
+
+    <div class="hero-terminal reveal delay-1">
+      <span class="terminal-prompt">$</span>
+      <span class="terminal-cmd">{{ $hero.terminal | default "blog --mode tech+life --energy high" }}</span>
+      <span class="terminal-cursor" aria-hidden="true">_</span>
     </div>
 
     {{- with $hero.buttons }}
@@ -27,6 +37,14 @@
       </a>
       {{- end }}
     </div>
+    {{- end }}
+
+    {{- with $hero.tags }}
+    <ul class="hero-tags">
+      {{- range $idx, $tag := . }}
+      <li class="reveal {{ printf "delay-%d" (add $idx 2) }}">#{{ $tag }}</li>
+      {{- end }}
+    </ul>
     {{- end }}
 
     {{- with $hero.metrics }}
@@ -51,6 +69,7 @@
   <div class="hero-grid">
     {{- range $idx, $card := . }}
     <article class="spot-card reveal {{ printf "delay-%d" (add $idx 3) }}">
+      <span class="spot-index">0{{ add $idx 1 }}</span>
       <h3>{{ $card.title }}</h3>
       <p>{{ $card.text }}</p>
     </article>

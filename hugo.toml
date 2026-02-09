@@ -1,0 +1,4 @@
+baseURL = 'https://tonytown6033.github.io/'
+languageCode = 'en-us'
+title = 'TonyTown Blog'
+theme = 'ananke'

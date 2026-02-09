@@ -10,6 +10,7 @@ pagerSize = 10
 [params]
 description = 'TonyTown 的技术与生活记录'
 defaultTheme = 'auto'
+mainSections = ['posts']
 ShowReadingTime = true
 ShowShareButtons = true
 ShowCodeCopyButtons = true
@@ -20,15 +21,58 @@ TocOpen = false
 DateFormat = '2006-01-02'
 
 [params.homeInfoParams]
-Title = 'TonyTown Blog'
-Content = '记录编程、想法和日常。'
+Title = 'Build. Write. Repeat.'
+Content = '一个持续更新的编程与成长实验室，记录技术实践、踩坑复盘和长期项目。'
+
+[params.hero]
+kicker = 'Personal Dev Journal'
+
+[[params.hero.buttons]]
+name = '阅读文章'
+url = '/posts/'
+style = 'solid'
+
+[[params.hero.buttons]]
+name = '查看 GitHub'
+url = 'https://github.com/TonyTown6033'
+style = 'ghost'
+
+[[params.hero.metrics]]
+value = '01'
+label = '已发布文章'
+
+[[params.hero.metrics]]
+value = '100%'
+label = '真实实践记录'
+
+[[params.hero.metrics]]
+value = '长期'
+label = '持续更新计划'
+
+[[params.hero.cards]]
+title = '技术实践'
+text = '从想法到可运行代码，关注真正能落地的工程方法。'
+
+[[params.hero.cards]]
+title = '问题复盘'
+text = '记录问题定位、调试路径和最终修复方案，避免重复踩坑。'
+
+[[params.hero.cards]]
+title = '长期项目'
+text = '持续推进自己的小项目，把博客当作公开开发日志。'
 
 [[params.socialIcons]]
 name = 'github'
 url = 'https://github.com/TonyTown6033'
 
 [[menu.main]]
-identifier = 'posts'
-name = 'Posts'
-url = '/posts/'
+identifier = 'home'
+name = '首页'
+url = '/'
 weight = 1
+
+[[menu.main]]
+identifier = 'posts'
+name = '文章'
+url = '/posts/'
+weight = 2

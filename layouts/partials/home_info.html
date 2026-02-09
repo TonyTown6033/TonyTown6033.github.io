@@ -1,0 +1,61 @@
+{{- $hero := site.Params.hero -}}
+{{- with site.Params.homeInfoParams }}
+<section class="hero-shell">
+  <div class="hero-glow hero-glow-a"></div>
+  <div class="hero-glow hero-glow-b"></div>
+
+  <article class="hero-panel reveal delay-0">
+    {{- with $hero.kicker }}
+    <p class="hero-kicker">{{ . }}</p>
+    {{- end }}
+
+    <h1 class="hero-title">{{ .Title | markdownify }}</h1>
+
+    <div class="hero-copy">
+      {{ .Content | markdownify }}
+    </div>
+
+    {{- with $hero.buttons }}
+    <div class="hero-actions">
+      {{- range $idx, $btn := . }}
+      {{- $href := $btn.url | default "/" -}}
+      <a
+        class="hero-btn {{ $btn.style | default "solid" }} reveal {{ printf "delay-%d" (add $idx 1) }}"
+        href="{{ if hasPrefix $href "http" }}{{ $href }}{{ else }}{{ $href | relURL }}{{ end }}"
+        {{ if hasPrefix $href "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>
+        {{ $btn.name }}
+      </a>
+      {{- end }}
+    </div>
+    {{- end }}
+
+    {{- with $hero.metrics }}
+    <ul class="hero-metrics">
+      {{- range $idx, $metric := . }}
+      <li class="metric reveal {{ printf "delay-%d" (add $idx 2) }}">
+        <span class="metric-value">{{ $metric.value }}</span>
+        <span class="metric-label">{{ $metric.label }}</span>
+      </li>
+      {{- end }}
+    </ul>
+    {{- end }}
+
+    {{- if site.Params.socialIcons }}
+    <div class="hero-social reveal delay-5">
+      {{ partial "social_icons.html" (dict "align" "left") }}
+    </div>
+    {{- end }}
+  </article>
+
+  {{- with $hero.cards }}
+  <div class="hero-grid">
+    {{- range $idx, $card := . }}
+    <article class="spot-card reveal {{ printf "delay-%d" (add $idx 3) }}">
+      <h3>{{ $card.title }}</h3>
+      <p>{{ $card.text }}</p>
+    </article>
+    {{- end }}
+  </div>
+  {{- end }}
+</section>
+{{- end -}}

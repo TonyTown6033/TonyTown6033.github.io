@@ -8,7 +8,7 @@ enableRobotsTXT = true
 pagerSize = 10
 
 [params]
-description = 'TonyTown 的技术与生活记录'
+description = 'TonyTown 的技术与生活札记'
 defaultTheme = 'auto'
 mainSections = ['posts']
 ShowReadingTime = true
@@ -21,11 +21,11 @@ TocOpen = false
 DateFormat = '2006-01-02'
 
 [params.homeInfoParams]
-Title = 'Build. Write. Repeat.'
-Content = '一个持续更新的编程与成长实验室，记录技术实践、踩坑复盘和长期项目。'
+Title = 'Code. Life. Repeat.'
+Content = '这里既记录技术实践与复盘，也记录日常生活、思考与成长。'
 
 [params.hero]
-kicker = 'Personal Dev Journal'
+kicker = 'Tech + Life Journal'
 
 [[params.hero.buttons]]
 name = '阅读文章'
@@ -43,7 +43,7 @@ label = '已发布文章'
 
 [[params.hero.metrics]]
 value = '100%'
-label = '真实实践记录'
+label = '技术与生活并行记录'
 
 [[params.hero.metrics]]
 value = '长期'
@@ -54,12 +54,12 @@ title = '技术实践'
 text = '从想法到可运行代码，关注真正能落地的工程方法。'
 
 [[params.hero.cards]]
-title = '问题复盘'
-text = '记录问题定位、调试路径和最终修复方案，避免重复踩坑。'
+title = '生活片段'
+text = '记录日常中的小事、感受与变化，给长期创作更多真实温度。'
 
 [[params.hero.cards]]
-title = '长期项目'
-text = '持续推进自己的小项目，把博客当作公开开发日志。'
+title = '长期成长'
+text = '把博客当作公开成长日志，持续写技术，也持续写生活。'
 
 [[params.socialIcons]]
 name = 'github'

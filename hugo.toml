@@ -1,128 +1,74 @@
-theme = 'blowfish'
 baseURL = 'https://tonytown6033.github.io/'
-title = 'TonyTown Blog'
 languageCode = 'zh-cn'
 defaultContentLanguage = 'zh-cn'
 hasCJKLanguage = true
+title = 'TonyTown Blog'
+theme = 'hugo-theme-stack'
 enableRobotsTXT = true
-enableEmoji = true
-summaryLength = 30
 
 [pagination]
 pagerSize = 10
 
-[taxonomies]
-tag = 'tags'
-category = 'categories'
-series = 'series'
-
-[outputs]
-home = ['HTML', 'RSS', 'JSON']
-
 [params]
-colorScheme = 'neon'
-defaultAppearance = 'dark'
-autoSwitchAppearance = true
-enableSearch = true
-enableCodeCopy = true
-enableStructuredBreadcrumbs = true
 mainSections = ['posts']
-disableTextInHeader = false
-defaultBackgroundImage = '/img/background.svg'
-defaultFeaturedImage = '/img/featured.svg'
-defaultSocialImage = '/img/blowfish_banner.png'
-
-[params.header]
-layout = 'fixed-fill-blur'
+rssFullContent = true
 
 [params.footer]
-showMenu = true
-showCopyright = true
-showThemeAttribution = false
-showAppearanceSwitcher = true
-showScrollToTop = true
+since = 2026
+customText = 'Code and Life by TonyTown'
 
-[params.homepage]
-layout = 'card'
-showRecent = true
-showRecentItems = 10
-showMoreLink = true
-showMoreLinkDest = 'posts'
-cardView = true
-cardViewScreenWidth = false
-layoutBackgroundBlur = true
+[params.sidebar]
+emoji = '✦'
+subtitle = '记录技术，也记录生活。'
 
 [params.article]
-showDate = true
-showViews = false
-showLikes = false
-showDateUpdated = false
-showAuthor = true
-showHero = true
-heroStyle = 'background'
-showBreadcrumbs = true
-showDraftLabel = true
-showPagination = true
-showReadingTime = true
-showTableOfContents = true
-showRelatedContent = true
-relatedContentLimit = 8
-showTaxonomies = true
-sharingLinks = ['twitter', 'telegram', 'reddit', 'email']
+headingAnchor = false
+math = false
+toc = true
+readingTime = true
 
-[params.list]
-showHero = true
-heroStyle = 'background'
-showBreadcrumbs = true
-showSummary = true
-showTableOfContents = false
-showCards = true
-groupByYear = false
-cardView = true
-cardViewScreenWidth = false
+[params.colorScheme]
+toggle = true
+default = 'light'
 
-[languages]
+[params.comments]
+enabled = false
 
-[languages.zh-cn]
-languageName = '简体中文'
-weight = 1
-title = 'TonyTown Blog'
+[params.widgets]
+homepage = [{ type = 'tag-cloud', params = { limit = 10 } }]
+page = [{ type = 'toc' }]
 
-[languages.zh-cn.params]
-displayName = '简体中文'
-isoCode = 'zh-cn'
-rtl = false
-dateFormat = '2006-01-02'
-description = '技术与生活的时尚博客'
+[[social]]
+identifier = 'github'
+name = 'GitHub'
+url = 'https://github.com/TonyTown6033'
 
-[languages.zh-cn.params.author]
-name = 'TonyTown'
-headline = '记录代码、生活与灵感'
-bio = '在这里持续发布技术笔记与生活记录。'
-image = 'img/blowfish_logo.png'
-links = [{ github = 'https://github.com/TonyTown6033' }]
+[social.params]
+icon = 'brand-github'
 
-[[languages.zh-cn.menu.main]]
-name = '文章'
-pageRef = 'posts'
+[[menu.main]]
+identifier = 'home'
+name = '首页'
+url = '/'
 weight = 10
 
-[[languages.zh-cn.menu.main]]
-name = '标签'
-pageRef = 'tags'
+[menu.main.params]
+icon = 'home'
+
+[[menu.main]]
+identifier = 'posts'
+name = '文章'
+url = '/posts/'
 weight = 20
 
-[[languages.zh-cn.menu.main]]
+[menu.main.params]
+icon = 'categories'
+
+[[menu.main]]
 identifier = 'github'
-pre = 'github'
 name = 'GitHub'
 url = 'https://github.com/TonyTown6033'
 weight = 30
-
-[[languages.zh-cn.menu.footer]]
-name = '分类'
-pageRef = 'categories'
-weight = 10
 
 [markup.goldmark.renderer]
 unsafe = true

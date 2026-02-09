@@ -2,7 +2,7 @@
 title = "windows 环境我所需要的工具"
 date = 2026-02-10T04:46:00+08:00
 draft = false 
-description = ''
+description = '这里统计工具并给出代码路径'
 tags = []
 categories = []
 series = []

@@ -8,6 +8,7 @@ on:
       - labeled
 
 permissions:
+  actions: write
   contents: write
   issues: write
 
@@ -155,6 +156,20 @@ jobs:
           git commit -m "feat: publish post from issue #${ISSUE_NUMBER}"
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Hugo deploy workflow
+        if: steps.commit.outputs.changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const workflowId = "hugo.yml";
+            const ref = context.payload.repository.default_branch;
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: workflowId,
+              ref,
+            });
 
       - name: Comment result to issue
         uses: actions/github-script@v7

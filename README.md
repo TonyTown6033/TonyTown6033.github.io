@@ -82,6 +82,20 @@ hugo new content/posts/your-post-slug/index.md
 
 然后编辑正文与 front matter。
 
+### 方式三：手机发 Issue 自动发布（最省事）
+
+仓库已提供 Issue 模板：`Mobile Post`。
+
+使用步骤：
+
+1. 在 GitHub App 或网页中创建 Issue，选择 `Mobile Post` 模板。
+2. 保持标题前缀为 `[Post]`，填写正文 `Content`。
+3. 提交后会自动生成文章文件并推送到仓库：
+   - 路径：`content/posts/issue-<issue号>/index.md`
+4. 系统会在 Issue 下自动回帖，给出文章文件路径和访问链接。
+
+触发工作流文件：`.github/workflows/issue-post.yml`
+
 ## front matter 建议
 
 文章头部常用字段（来自 `archetypes/default.md`）：
@@ -108,4 +122,3 @@ hugo new content/posts/your-post-slug/index.md
 - `push` 到 `main/master`：构建 + 部署
 - `pull_request` 到 `main/master`：仅构建校验（不部署）
 - 可手动触发：`workflow_dispatch`
-

@@ -1,0 +1,49 @@
+name: Mobile Post
+description: 用手机快速提交文章，自动生成并发布到博客
+title: "[Post] "
+labels: ["post"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        使用方式：
+        - 保持标题前缀为 `[Post]`（用于触发自动发布）。
+        - 填写 `Content` 后提交 Issue 即可自动生成文章。
+        - `Description`、`Summary`、`Tags` 可选。
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: 文章描述（front matter 的 description）
+      placeholder: 一句话介绍这篇文章
+    validations:
+      required: false
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: 列表页摘要（front matter 的 summary）
+      placeholder: 这篇文章要点是什么
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: 标签（逗号分隔），例如：写作, 生活, 随笔
+      placeholder: 写作, 生活
+    validations:
+      required: false
+
+  - type: textarea
+    id: content
+    attributes:
+      label: Content
+      description: 文章正文（支持 Markdown）
+      placeholder: 开始写你的正文...
+      render: markdown
+    validations:
+      required: true

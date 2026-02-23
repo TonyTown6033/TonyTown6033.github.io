@@ -1,0 +1,194 @@
+name: Publish Post From Issue
+
+on:
+  issues:
+    types:
+      - opened
+      - edited
+      - labeled
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: issue-post-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    if: startsWith(github.event.issue.title, '[Post]') || contains(github.event.issue.labels.*.name, 'post')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate post file from issue
+        id: generate
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+        run: |
+          set -euo pipefail
+          export CN_DATE="$(TZ=Asia/Shanghai date +"%Y-%m-%dT%H:%M:%S+08:00")"
+
+          node <<'NODE'
+          const fs = require("fs");
+          const path = require("path");
+
+          const issueTitleRaw = process.env.ISSUE_TITLE || "";
+          const issueBodyRaw = process.env.ISSUE_BODY || "";
+          const issueNumber = String(process.env.ISSUE_NUMBER || "").trim();
+          const issueUrl = process.env.ISSUE_URL || "";
+          const issueAuthor = process.env.ISSUE_AUTHOR || "";
+          const publishDate = process.env.CN_DATE || "";
+
+          function normalize(text) {
+            return String(text || "").replace(/\r/g, "").trim();
+          }
+
+          function tomlString(text) {
+            return JSON.stringify(normalize(text));
+          }
+
+          function extractField(label) {
+            const isContent = label.toLowerCase() === "content";
+            const regex = isContent
+              ? new RegExp(`###\\s*${label}\\s*\\n\\n([\\s\\S]*)$`, "i")
+              : new RegExp(
+                  `###\\s*${label}\\s*\\n\\n([\\s\\S]*?)(?=\\n###\\s|$)`,
+                  "i"
+                );
+            const matched = issueBodyRaw.match(regex);
+            if (!matched) return "";
+            const value = normalize(matched[1]);
+            return value === "_No response_" ? "" : value;
+          }
+
+          function cleanTitle(text) {
+            const cleaned = normalize(text).replace(/^\[(post|POST)\]\s*/, "");
+            return cleaned || `Issue ${issueNumber}`;
+          }
+
+          const title = cleanTitle(issueTitleRaw);
+          const descriptionField = normalize(extractField("Description"));
+          const summaryField = normalize(extractField("Summary"));
+          const tagsField = normalize(extractField("Tags"));
+          let content = normalize(extractField("Content"));
+
+          if (!content) {
+            content = normalize(issueBodyRaw);
+          }
+          if (!content) {
+            content = "（待补充）";
+          }
+
+          const plainText = content
+            .replace(/```[\s\S]*?```/g, " ")
+            .replace(/`[^`]*`/g, " ")
+            .replace(/[#>*_\-]+/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+
+          const summary = summaryField || plainText.slice(0, 80) || title;
+          const description = descriptionField || summary;
+
+          const tags = tagsField
+            .split(/[,\n，]/)
+            .map((item) => item.trim())
+            .filter(Boolean)
+            .slice(0, 8);
+
+          const tagsToml = `[${tags.map((tag) => JSON.stringify(tag)).join(", ")}]`;
+          const slug = `issue-${issueNumber}`;
+          const dirPath = path.join("content", "posts", slug);
+          const postPath = path.join(dirPath, "index.md");
+
+          fs.mkdirSync(dirPath, { recursive: true });
+
+          const markdown = [
+            "+++",
+            `title = ${tomlString(title)}`,
+            `date = ${publishDate}`,
+            "draft = false",
+            `description = ${tomlString(description)}`,
+            `tags = ${tagsToml}`,
+            "categories = []",
+            "series = []",
+            `summary = ${tomlString(summary)}`,
+            "showTableOfContents = true",
+            `sourceIssue = ${issueNumber}`,
+            "+++",
+            "",
+            content,
+            "",
+            `> 来源 Issue: [#${issueNumber}](${issueUrl}) by @${issueAuthor}`,
+            "",
+          ].join("\n");
+
+          fs.writeFileSync(postPath, markdown, "utf8");
+
+          const output = process.env.GITHUB_OUTPUT;
+          fs.appendFileSync(output, `post_path=${postPath}\n`);
+          fs.appendFileSync(output, `post_url_path=/posts/${slug}/\n`);
+          fs.appendFileSync(output, `post_title=${title.replace(/\n/g, " ")}\n`);
+          NODE
+
+      - name: Commit and push
+        id: commit
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${{ steps.generate.outputs.post_path }}"
+
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git commit -m "feat: publish post from issue #${ISSUE_NUMBER}"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Comment result to issue
+        uses: actions/github-script@v7
+        env:
+          CHANGED: ${{ steps.commit.outputs.changed }}
+          POST_PATH: ${{ steps.generate.outputs.post_path }}
+          POST_URL_PATH: ${{ steps.generate.outputs.post_url_path }}
+          POST_TITLE: ${{ steps.generate.outputs.post_title }}
+        with:
+          script: |
+            const changed = process.env.CHANGED === "true";
+            const postPath = process.env.POST_PATH || "";
+            const postUrlPath = process.env.POST_URL_PATH || "";
+            const postTitle = process.env.POST_TITLE || "未命名文章";
+            const siteBase = "https://tonytown6033.github.io";
+            const postUrl = `${siteBase}${postUrlPath}`;
+
+            const body = changed
+              ? [
+                  `已发布文章：**${postTitle}**`,
+                  "",
+                  `- 文件：\`${postPath}\``,
+                  `- 链接：${postUrl}`,
+                  "",
+                  "说明：GitHub Pages 部署完成后即可访问。",
+                ].join("\n")
+              : [
+                  "文章内容无变化，未生成新提交。",
+                  `- 文件：\`${postPath}\``,
+                ].join("\n");
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });

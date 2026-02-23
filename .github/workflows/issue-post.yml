@@ -70,7 +70,7 @@ jobs:
           }
 
           function cleanTitle(text) {
-            const cleaned = normalize(text).replace(/^\[(post|POST)\]\s*/, "");
+            const cleaned = normalize(text).replace(/^\[\s*post\s*\]\s*/i, "");
             return cleaned || `Issue ${issueNumber}`;
           }
 

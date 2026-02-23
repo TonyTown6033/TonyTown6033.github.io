@@ -12,21 +12,23 @@ showTableOfContents = true
 
 ## Background
 
-南京大学ics 是操作系统的前导课程，主要是通过软件来模拟计算机运行的过程。
-该课程的地址是[ics-nju](https://nju-projectn.github.io/ics-pa-gitbook/ics2024/) 
-对应的代码仓库我保存在[这里](https://github.com/TonyTown6033/ics2024)
+最近在做南京大学的 ICS。它是操作系统课之前的一段前导训练，用软件把一台计算机一点点搭起来。平时我们习惯直接调用系统，很少去想底层是怎么呼吸的；这门课刚好反过来，逼你从细节开始。
 
+课程地址在这里：[ics-nju](https://nju-projectn.github.io/ics-pa-gitbook/ics2024/)
+
+我自己的代码仓库在这里：[ics2024](https://github.com/TonyTown6033/ics2024)
 
 ## Notes
-我会将已经完成的内容写在下面：
+
+到目前为止，我做完了这些：
 
 - `pa1`
-  1. 环境安装
-  2. `expr.c` 完成了计算的基本功能（`+`、`-`、`*`、`/`、解引用、读取地址）
-  3. 随机计算测试用例也完成了
+  1. 环境安装完成
+  2. `expr.c` 已支持基础计算（`+`、`-`、`*`、`/`、解引用、读取地址）
+  3. 随机表达式测试用例完成
 
 - `pa2`
-  1. 使用 `riscv32` 架构，补充了一些 `riscv32` 指令
-  2. 补充了 `stdio.c`、`string.c` 并通过了测试
+  1. 选择 `riscv32` 架构，并补充了部分 `riscv32` 指令
+  2. 完成 `stdio.c`、`string.c`，并通过测试
 
-接下来要做的是用 `diff-test` 验证当前系统的正确性
+接下来要做的事很明确：用 `diff-test` 去验证当前系统的正确性。

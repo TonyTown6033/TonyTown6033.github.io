@@ -6,7 +6,7 @@ description = '记录南京大学ics 操作系统前导课的进度'
 tags = []
 categories = []
 series = []
-summary = ''
+summary = '记录南京大学 ICS 课程推进：完成 pa1、pa2，下一步进行 diff-test 验证。'
 showTableOfContents = true
 +++
 

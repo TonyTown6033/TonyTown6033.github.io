@@ -6,7 +6,7 @@ description = '这里统计工具并给出代码路径'
 tags = []
 categories = []
 series = []
-summary = ''
+summary = '整理 Windows 开发与日常工具清单，为后续一键初始化环境做准备。'
 showTableOfContents = true
 +++
 

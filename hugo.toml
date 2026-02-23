@@ -94,7 +94,7 @@ description = '技术与生活的时尚博客'
 name = 'TonyTown'
 headline = '记录代码、生活与灵感'
 bio = '在这里持续发布技术笔记与生活记录。'
-image = 'img/blowfish_logo.png'
+image = 'img/avatar-wounded-man-new.jpg'
 links = [{ github = 'https://github.com/TonyTown6033' }]
 
 [[languages.zh-cn.menu.main]]

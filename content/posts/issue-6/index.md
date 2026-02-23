@@ -1,19 +1,19 @@
 +++
 title = "新社员的科研记录"
-date = 2026-02-23T14:38:21+08:00
+date = 2026-02-23T14:48:29+08:00
 draft = false
-description = "Description No response Summary No response Tags No response Content"
+description = "test"
 tags = []
 categories = []
 series = []
-summary = "Description No response Summary No response Tags No response Content"
+summary = "Description test Summary No response Tags No response Content"
 showTableOfContents = true
 sourceIssue = 6
 +++
 
 ### Description
 
-_No response_
+test
 
 ### Summary
 

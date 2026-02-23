@@ -59,6 +59,7 @@ showHero = false
 showBreadcrumbs = true
 showDraftLabel = true
 showPagination = true
+showComments = true
 showReadingTime = true
 showTableOfContents = true
 showRelatedContent = true
@@ -75,6 +76,13 @@ showCards = false
 groupByYear = false
 cardView = false
 cardViewScreenWidth = true
+
+[params.comments]
+provider = 'utterances'
+repo = 'TonyTown6033/TonyTown6033.github.io'
+issueTerm = 'pathname'
+label = 'comment'
+theme = 'preferred-color-scheme'
 
 [languages]
 

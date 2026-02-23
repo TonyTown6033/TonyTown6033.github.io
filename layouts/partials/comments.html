@@ -1,0 +1,24 @@
+{{- $provider := lower (site.Params.comments.provider | default "") -}}
+
+{{- if eq $provider "utterances" -}}
+  {{- $repo := site.Params.comments.repo | default "" -}}
+  {{- if $repo -}}
+    <section class="max-w-prose pt-6 print:hidden">
+      <h2 class="mt-0 mb-4 text-2xl font-semibold">评论</h2>
+      <script
+        src="https://utteranc.es/client.js"
+        repo="{{ $repo }}"
+        issue-term="{{ site.Params.comments.issueTerm | default "pathname" }}"
+        label="{{ site.Params.comments.label | default "comment" }}"
+        theme="{{ site.Params.comments.theme | default "preferred-color-scheme" }}"
+        crossorigin="anonymous"
+        async>
+      </script>
+      <noscript>请启用 JavaScript 以加载评论。</noscript>
+    </section>
+  {{- else -}}
+    {{ warnf "[COMMENTS] params.comments.repo is required when provider is utterances." }}
+  {{- end -}}
+{{- else if eq $provider "disqus" -}}
+  {{ template "_internal/disqus.html" . }}
+{{- end -}}

@@ -64,7 +64,7 @@ showReadingTime = true
 showTableOfContents = true
 showRelatedContent = true
 relatedContentLimit = 8
-showTaxonomies = true
+showTaxonomies = false
 sharingLinks = ['twitter', 'telegram', 'reddit', 'email']
 
 [params.list]
@@ -109,11 +109,6 @@ links = [{ github = 'https://github.com/TonyTown6033' }]
 name = '文章'
 pageRef = 'posts'
 weight = 10
-
-[[languages.zh-cn.menu.main]]
-name = '标签'
-pageRef = 'tags'
-weight = 20
 
 [[languages.zh-cn.menu.main]]
 identifier = 'github'

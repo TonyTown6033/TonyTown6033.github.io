@@ -31,6 +31,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          # For push/workflow_dispatch, always build the latest branch tip.
+          # This prevents deploying an older commit when delayed events arrive.
+          ref: ${{ github.event_name == 'pull_request' && github.sha || github.ref_name }}
           submodules: recursive
           fetch-depth: 0
 

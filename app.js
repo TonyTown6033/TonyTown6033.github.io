@@ -2,6 +2,13 @@
 var app = document.getElementById("app");
 var navLinks = document.querySelectorAll("nav a");
 
+// ========== 安全：HTML 转义 ==========
+function escapeHtml(str) {
+  var div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
 // ========== 解析 frontmatter ==========
 // 从 .md 文本中提取正文部分（跳过 frontmatter）
 function getContent(text) {
@@ -21,6 +28,9 @@ function getContent(text) {
 function renderHome() {
   fetch("posts.json")
     .then(function (res) {
+      if (!res.ok) {
+        throw new Error("文章列表加载失败：" + res.status);
+      }
       return res.json();
     })
     .then(function (posts) {
@@ -29,12 +39,15 @@ function renderHome() {
         var post = posts[i];
         html +=
           '<div class="post-card">' +
-          '<h2 onclick="renderPost(\'' + post.filename + '\')">' + post.title + "</h2>" +
-          '<span class="date">' + post.date + "</span>" +
-          '<p class="summary">' + post.summary + "</p>" +
+          '<h2 onclick="renderPost(\'' + escapeHtml(post.filename) + '\')">' + escapeHtml(post.title) + "</h2>" +
+          '<span class="date">' + escapeHtml(post.date) + "</span>" +
+          '<p class="summary">' + escapeHtml(post.summary) + "</p>" +
           "</div>";
       }
       app.innerHTML = html;
+    })
+    .catch(function (err) {
+      app.innerHTML = '<p class="error">' + err.message + "</p>";
     });
 }
 
@@ -43,6 +56,9 @@ function renderPost(filename) {
   // 先从 posts.json 拿元数据，再 fetch .md 文件拿正文
   fetch("posts.json")
     .then(function (res) {
+      if (!res.ok) {
+        throw new Error("文章列表加载失败：" + res.status);
+      }
       return res.json();
     })
     .then(function (posts) {
@@ -60,9 +76,9 @@ function renderPost(filename) {
         app.innerHTML =
           '<div class="post-detail">' +
           '<a class="back" onclick="renderHome()">\u2190 返回首页</a>' +
-          "<h2>" + meta.title + "</h2>" +
-          '<div class="date">' + meta.date + "</div>" +
-          '<div class="content">' + marked.parse(content) + "</div>" +
+          "<h2>" + escapeHtml(meta.title) + "</h2>" +
+          '<div class="date">' + escapeHtml(meta.date) + "</div>" +
+          '<div class="content">' + DOMPurify.sanitize(marked.parse(content)) + "</div>" +
           '<div id="comments"></div>' +
           "</div>";
 
@@ -76,6 +92,9 @@ function renderPost(filename) {
         script.async = true;
         document.getElementById("comments").appendChild(script);
       });
+    })
+    .catch(function (err) {
+      app.innerHTML = '<p class="error">' + err.message + "</p>";
     });
 }
 

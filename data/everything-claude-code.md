@@ -90,4 +90,4 @@ claude plugin add everything-claude-code
 
 ECC 本质上是把社区积累的最佳实践打包成了即插即用的工具。不管你是刚开始用 Claude Code，还是已经用了一段时间，装上 ECC 都能让你的开发体验上一个台阶。
 
-项目地址：[GitHub - anthropics/everything-claude-code](https://github.com/anthropics/everything-claude-code)
+项目地址：[GitHub - affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)

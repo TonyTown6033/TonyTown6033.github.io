@@ -86,7 +86,7 @@ function renderPost(filename) {
         var script = document.createElement("script");
         script.src = "https://utteranc.es/client.js";
         script.setAttribute("repo", "TonyTown6033/TonyTown6033.github.io");
-        script.setAttribute("issue-term", "title");
+        script.setAttribute("issue-term", filename);
         script.setAttribute("theme", "github-light");
         script.setAttribute("crossorigin", "anonymous");
         script.async = true;

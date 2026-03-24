@@ -51,6 +51,9 @@ function renderPost(filename) {
       });
 
       return fetch("data/" + filename).then(function (res) {
+        if (!res.ok) {
+          throw new Error("文章加载失败：" + res.status);
+        }
         return res.text();
       }).then(function (text) {
         var content = getContent(text);

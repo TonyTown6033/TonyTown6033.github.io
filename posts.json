@@ -1,0 +1,56 @@
+[
+  {
+    "filename": "everything-claude-code.md",
+    "title": "Everything Claude Code：让 AI 编程助手更强大的插件",
+    "date": "2026-03-24",
+    "summary": "介绍 Everything Claude Code (ECC) 插件，一套让 Claude Code 战斗力翻倍的 skills、agents 和 hooks 集合。"
+  },
+  {
+    "filename": "learning-javascript.md",
+    "title": "学习 JavaScript 的心得",
+    "date": "2026-03-24",
+    "summary": "分享一些学习 JS 过程中的体会。"
+  },
+  {
+    "filename": "my-first-blog.md",
+    "title": "我的第一篇博客",
+    "date": "2026-03-24",
+    "summary": "这是我用 JavaScript 写的第一个项目。"
+  },
+  {
+    "filename": "travel-dream.md",
+    "title": "还会有环游世界的机会吗",
+    "date": "2026-03-03",
+    "summary": "从华为辞职后购买万用插头，为计划中的环球旅行准备。"
+  },
+  {
+    "filename": "ics-progress.md",
+    "title": "南京大学ics进度",
+    "date": "2026-02-23",
+    "summary": "记录南京大学 ICS 课程推进：完成 pa1、pa2，下一步进行 diff-test 验证。"
+  },
+  {
+    "filename": "research-record.md",
+    "title": "新社员的科研记录",
+    "date": "2026-02-23",
+    "summary": "CIPS缺陷引发铁磁，单层CIPS从一开始按铁电态算结果发现反铁电或者亚铁电能量更稳定。"
+  },
+  {
+    "filename": "words-like-soda.md",
+    "title": "言语如苏打般涌现",
+    "date": "2026-02-23",
+    "summary": "在低谷中失去表达，又在一次久违的约会里重新找回言语与自我。"
+  },
+  {
+    "filename": "unreachable-memory.md",
+    "title": "永远访问不了的内存",
+    "date": "2026-02-10",
+    "summary": "一段五百天关系在沉默中结束，她最终成了我无法再访问的那段内存。"
+  },
+  {
+    "filename": "windows-tools.md",
+    "title": "windows 环境我所需要的工具",
+    "date": "2026-02-10",
+    "summary": "整理 Windows 开发与日常工具清单，为后续一键初始化环境做准备。"
+  }
+]

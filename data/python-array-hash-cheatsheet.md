@@ -66,9 +66,10 @@ a[::2]    # [0, 2, 4]     每隔一个取一个
 ```python
 a = [3, 1, 4, 1, 5]
 
-a.sort()                    # 原地排序，升序
+a.sort()                    # 原地排序，升序，返回 None
 a.sort(reverse=True)        # 原地排序，降序
-b = sorted(a)               # 返回新数组，不修改 a
+b = sorted(a)               # 返回新列表，不修改 a
+b = sorted("bca")           # 也可以排序字符串 → ['a', 'b', 'c']
 
 # 自定义排序键
 words = ["banana", "fig", "apple"]
@@ -181,7 +182,24 @@ for k, v in d.items():       # 遍历键值对
     print(k, v)
 ```
 
-### defaultdict
+### defaultdict vs 普通 dict
+
+核心区别：访问不存在的 key 时，`defaultdict` 自动创建默认值，不报错。
+
+```python
+# 普通 dict — 需要手动初始化
+d = {}
+d['a'] += 1   # KeyError！
+
+if 'a' not in d:
+    d['a'] = 0
+d['a'] += 1   # 这样才对
+
+# defaultdict — 直接用
+from collections import defaultdict
+d = defaultdict(int)
+d['a'] += 1   # 自动初始化为 0，直接加
+```
 
 不用每次先检查键是否存在：
 
@@ -243,6 +261,20 @@ def group_anagrams(strs):
         key = tuple(sorted(s))
         groups[key].append(s)
     return list(groups.values())
+# 5. 最长连续序列（128题）— O(n)
+# 关键：只从序列起点（num-1 不在集合里）开始扩展
+def longest_consecutive(nums):
+    num_set = set(nums)
+    best = 0
+    for num in num_set:
+        if num - 1 not in num_set:      # 是起点
+            cur, length = num, 1
+            while cur + 1 in num_set:
+                cur += 1
+                length += 1
+            best = max(best, length)
+    return best
+# set 查找是 O(1)，while 总共执行 n 次，整体 O(n)
 ```
 
 ---

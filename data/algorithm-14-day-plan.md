@@ -19,6 +19,16 @@ summary: 学习算法准备面试
 - `49. Group Anagrams`
 - `128. Longest Consecutive Sequence`
 
+可加练（推荐顺序）：
+- `217. Contains Duplicate`
+- `242. Valid Anagram`
+- `219. Contains Duplicate II`
+- `205. Isomorphic Strings`
+- `350. Intersection of Two Arrays II`
+- `36. Valid Sudoku`
+- `454. 4Sum II`
+- `560. Subarray Sum Equals K`
+
 复写：
 - `1. Two Sum`
 

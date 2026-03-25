@@ -6,6 +6,12 @@
     "summary": "学习算法准备面试"
   },
   {
+    "filename": "python-array-hash-cheatsheet.md",
+    "title": "Python 数组与哈希速查表",
+    "date": "2026-03-25",
+    "summary": "刷题必备：list 和 dict 的核心操作、时间复杂度与常用技巧，一页搞定。"
+  },
+  {
     "filename": "everything-claude-code.md",
     "title": "Everything Claude Code：让 AI 编程助手更强大的插件",
     "date": "2026-03-24",

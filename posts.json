@@ -1,5 +1,29 @@
 [
   {
+    "filename": "note_of_algorthim.md",
+    "title": "cpp 使用到的一些技巧",
+    "date": "2026-08-01",
+    "summary": "note some trick when i do algorthm"
+  },
+  {
+    "filename": "mortage.md",
+    "title": "Mortage-Backed Securities",
+    "date": "2026-05-05",
+    "summary": "对比美国MBS和中国的公积金"
+  },
+  {
+    "filename": "ai_user.md",
+    "title": "使用AI的技巧",
+    "date": "2026-03-30",
+    "summary": "介绍我的AI使用经验"
+  },
+  {
+    "filename": "job_find.md",
+    "title": "使用AI的技巧",
+    "date": "2026-03-30",
+    "summary": "介绍我的AI使用经验"
+  },
+  {
     "filename": "algorithm-14-day-plan.md",
     "title": "14天算法学习",
     "date": "2026-03-25",
